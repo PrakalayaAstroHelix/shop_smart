@@ -478,3 +478,23 @@ button {
     margin-top:30px;
 
 }
+
+#platformModal .modal-content{
+
+    position:relative;
+
+}
+
+#platformModal .close-btn{
+
+    position:absolute;
+
+    top:15px;
+
+    right:20px;
+
+    font-size:35px;
+
+    cursor:pointer;
+
+}

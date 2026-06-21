@@ -8,9 +8,65 @@
 
 <body>
 
+    <div id="sidebar" class="sidebar">
+
+    <span
+        class="close-sidebar"
+        onclick="closeSidebar()">
+
+        ×
+
+    </span>
+
+    <h2>Menu</h2>
+
+    <button onclick="showWishlistPage()">
+        ❤️ Wishlist
+    </button>
+
+    <button onclick="showRecentPage()">
+        🕒 Recently Viewed
+    </button>
+
+    <button onclick="showHistoryPage()">
+        🔍 Search History
+    </button>
+
+    <button onclick="showProfile()">
+        👤 Profile
+    </button>
+
+    <button onclick="showHomePage()">
+        🏠 Home
+    </button>
+
+</div>
+
     <div class="container">
 
+        <div class="header">
+            
+            <button
+            class="menu-btn"
+            onclick="openSidebar()">
+
+            ☰
+        
+        </button>
+
         <h1>🛒 ShopSmart</h1>
+        
+        <button id="themeToggle">
+            
+            🌙
+        
+        </button>
+
+        <button onclick="showLogin()">
+            👤 Login
+        </button>
+    
+    </div>
 
         <p>Compare prices across multiple platforms</p>
 
@@ -31,25 +87,16 @@
 
         </div>
 
-        <h2>🔥 Trending Products</h2>
-
-        <div id="trendingProducts"></div>
-
-        <h2>❤️ Wishlist</h2>
+        <div id="homePage">
+            
+            <h2>🔥 Trending Products</h2>
+            
+            <div id="trendingProducts"></div>
         
-        <div id="wishlistProducts"></div>
-
-        <h2>🕒 Recently Viewed</h2>
-        
-        <div id="recentProducts"></div>
-
-        <hr>
-
-        <h2>Search Results</h2>
-
-        <div id="results">
-
         </div>
+        
+        <div id="menuPage" style="display:none;"></div>
+        
 
         <!-- Product Details Modal -->
 
@@ -66,13 +113,9 @@
 
             </div>
         </div>
-    </div>
-
-    <h2>🔍 Search History</h2>
-    
-    <ul id="searchHistory"></ul>
 
     </div>
+
 
     <script src="data/beauty.js"></script>
     <script src="data/electronics.js"></script>

@@ -511,32 +511,7 @@ function loadRecentProducts(){
 
 function loadSearchHistory(){
 
-    console.log("loadSearchHistory running");
-
-    const list =
-
-    document.getElementById(
-        "searchHistory"
-    );
-
-    const history =
-
-    JSON.parse(
-        localStorage.getItem("history")
-    ) || [];
-
-    list.innerHTML = "";
-
-    history.forEach(item=>{
-
-        const li =
-        document.createElement("li");
-
-        li.textContent = item;
-
-        list.appendChild(li);
-
-    });
+    return;
 
 }
 
@@ -594,10 +569,272 @@ function loadWishlistProducts(){
 
 }
 
+const themeButton =
+
+document.getElementById(
+    "themeToggle"
+);
+
+themeButton.onclick = () => {
+
+    document.body.classList.toggle(
+        "dark-mode"
+    );
+
+    const darkMode =
+
+    document.body.classList.contains(
+        "dark-mode"
+    );
+
+    localStorage.setItem(
+
+        "theme",
+
+        darkMode ? "dark" : "light"
+
+    );
+
+};
+
+if(
+
+    localStorage.getItem("theme")
+
+    ===
+
+    "dark"
+
+){
+
+    document.body.classList.add(
+        "dark-mode"
+    );
+
+}
+
+function openSidebar(){
+
+    document
+    .getElementById("sidebar")
+    .style.width = "350px";
+
+}
+
+function closeSidebar(){
+
+    document
+    .getElementById("sidebar")
+    .style.width = "0";
+
+}
+
+
+function showWishlistPage(){
+
+    closeSidebar();
+
+    document.getElementById(
+        "homePage"
+    ).style.display = "none";
+
+    const page =
+    document.getElementById("menuPage");
+
+    page.style.display = "block";
+
+    let wishlist =
+    JSON.parse(
+        localStorage.getItem("wishlist")
+    ) || [];
+
+    page.innerHTML =
+    "<h1>❤️ Wishlist</h1>";
+
+    wishlist.forEach(name => {
+
+        const product =
+        products.find(
+            p => p.name === name
+        );
+
+        if(product){
+
+            page.innerHTML += `
+
+            <div class="card">
+
+                <img
+                src="${product.image}"
+                class="product-image">
+
+                <h3>${product.name}</h3>
+
+                <p>${product.category}</p>
+
+            </div>
+
+            `;
+
+        }
+
+    });
+
+}
+
+function showRecentPage(){
+
+    closeSidebar();
+
+    document.getElementById(
+        "homePage"
+    ).style.display = "none";
+
+    const page =
+    document.getElementById("menuPage");
+
+    page.style.display = "block";
+
+    page.innerHTML =
+    "<h1>🕒 Recently Viewed</h1>";
+
+    const recent =
+    JSON.parse(
+        localStorage.getItem("recent")
+    ) || [];
+
+    recent.forEach(product => {
+
+        page.innerHTML += `
+
+        <div class="card">
+
+            <img
+            src="${product.image}"
+            class="product-image">
+
+            <h3>${product.name}</h3>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+function showHistoryPage(){
+
+    closeSidebar();
+
+    document.getElementById(
+        "homePage"
+    ).style.display = "none";
+
+    const page =
+    document.getElementById("menuPage");
+
+    page.style.display = "block";
+
+    page.innerHTML =
+    "<h1>🔍 Search History</h1>";
+
+    const history =
+    JSON.parse(
+        localStorage.getItem("history")
+    ) || [];
+
+    history.forEach(item => {
+
+        page.innerHTML += `
+
+        <div class="card">
+
+            <h3>${item}</h3>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+function showHomePage(){
+
+    closeSidebar();
+
+    document.getElementById(
+        "menuPage"
+    ).style.display = "none";
+
+    document.getElementById(
+        "homePage"
+    ).style.display = "block";
+
+}
+
+function showProfile(){
+
+    closeSidebar();
+
+    document.getElementById(
+        "homePage"
+    ).style.display = "none";
+
+    const page =
+    document.getElementById("menuPage");
+
+    page.style.display = "block";
+
+    const username =
+    localStorage.getItem("username")
+    || "Guest User";
+
+    page.innerHTML = `
+
+        <h1>👤 Profile</h1>
+
+        <div class="card">
+
+            <h2>${username}</h2>
+
+            <p>Member of ShopSmart</p>
+
+            <p>
+            Wishlist saved locally
+            </p>
+
+        </div>
+
+    `;
+}
+
+function showLogin(){
+
+    let username = prompt(
+        "Enter username"
+    );
+
+    if(username){
+
+        localStorage.setItem(
+            "username",
+            username
+        );
+
+        alert(
+            "Welcome " + username
+        );
+
+    }
+
+}
+
 loadTrendingProducts();
 
-loadWishlistProducts();
+//loadWishlistProducts();
 
-loadRecentProducts();
+//loadRecentProducts();
 
-loadSearchHistory();
+//loadSearchHistory();
